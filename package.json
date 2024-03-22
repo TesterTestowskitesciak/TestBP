@@ -1,0 +1,76 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/boilerplate-backend-store/src",
+    "projectType": "application",
+    "targets": {
+      "build": {
+        "executor": "@nrwl/node:webpack",
+        "outputs": ["{options.outputPath}"],
+        "options": {
+          "outputPath": "dist/apps/boilerplate-backend-store",
+          "main": "apps/boilerplate-backend-store/src/main.ts",
+          "tsConfig": "apps/boilerplate-backend-store/tsconfig.app.json",
+          "assets": ["apps/boilerplate-backend-store/src/assets"]
+        },
+        "configurations": {
+          "production": {
+            "optimization": true,
+            "extractLicenses": true,
+            "inspect": false,
+            "fileReplacements": [
+              {
+                "replace": "apps/boilerplate-backend-store/src/environments/environment.ts",
+                "with": "apps/boilerplate-backend-store/src/environments/environment.prod.ts"
+              }
+            ]
+          }
+        }
+      },
+      "serve": {
+        "executor": "@nrwl/node:node",
+        "dependsOn": ["build-proto"],
+        "options": {
+          "buildTarget": "boilerplate-backend-store:build"
+        },
+        "configurations": {
+          "production": {
+            "buildTarget": "boilerplate-backend-store:build:production"
+          }
+        }
+      },
+      "lint": {
+        "executor": "@nrwl/linter:eslint",
+        "outputs": ["{options.outputFile}"],
+        "options": {
+          "lintFilePatterns": ["apps/boilerplate-backend-store/**/*.ts"]
+        }
+      },
+  
+      "lint:fix": {
+        "executor": "@nrwl/linter:eslint",
+        "outputs": ["{options.outputFile}"],
+        "options": {
+          "lintFilePatterns": ["apps/boilerplate-backend-store/**/*.ts"],
+          "fix": true
+        }
+      },
+      "test": {
+        "executor": "@nrwl/jest:jest",
+        "outputs": ["coverage/apps/boilerplate-backend-store"],
+        "options": {
+          "jestConfig": "apps/boilerplate-backend-store/jest.config.ts",
+          "passWithNoTests": true
+        }
+      },
+      "build-proto": {
+        "executor": "@nrwl/workspace:run-commands",
+        "options": {
+          "commands": ["yarn nx run boilerplate-backend-proto:build"],
+          "color": true
+        }
+      }
+    },
+    "tags": [],
+    "version": "1.0.0"
+  }
+  
