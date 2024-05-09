@@ -2,6 +2,10 @@
   "name": "my_package",
   "description": "",
   "version": "1.0.0",
+    "dependencies": {
+    "react": "17.0.2",
+    "axios": "0.21.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
