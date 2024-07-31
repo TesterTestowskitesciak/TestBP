@@ -1,0 +1,1 @@
+dummy1GB.jar filter=lfs diff=lfs merge=lfs -text
