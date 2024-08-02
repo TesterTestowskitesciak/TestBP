@@ -1,9 +1,9 @@
 {
-  "name": "TesterTestProduct40",
+  "name": "TesterTestProduct41",
   "description": "",
   "version": "4.4.5",
     "dependencies": {
-      
+      "TesterTestProduct40" : "4.4.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
